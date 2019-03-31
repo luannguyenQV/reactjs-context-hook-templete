@@ -1,8 +1,6 @@
 function combineReducers(reducers) {
-  var finalReducers = pick(reducers, function (val) {
-    return typeof val === 'function';
-  });
-  var sanityError;
+  const finalReducers = pick(reducers, val => typeof val === 'function');
+  let sanityError;
 
   try {
     assertReducerSanity(finalReducers);
@@ -10,9 +8,7 @@ function combineReducers(reducers) {
     sanityError = e;
   }
 
-  var defaultState = mapValues(finalReducers, function () {
-    return undefined;
-  });
+  const defaultState = mapValues(finalReducers, () => undefined);
 
   return function combination(state, action) {
     if (state === undefined) state = defaultState;
@@ -21,20 +17,24 @@ function combineReducers(reducers) {
       throw sanityError;
     }
 
-    var hasChanged = false;
-    var finalState = mapValues(finalReducers, function (reducer, key) {
-      var previousStateForKey = state[key];
-      var nextStateForKey = reducer(previousStateForKey, action);
+    let hasChanged = false;
+    const finalState = mapValues(finalReducers, (reducer, key) => {
+      const previousStateForKey = state[key];
+      const nextStateForKey = reducer(previousStateForKey, action);
       if (typeof nextStateForKey === 'undefined') {
-        var errorMessage = getUndefinedStateErrorMessage(key, action);
+        const errorMessage = getUndefinedStateErrorMessage(key, action);
         throw new Error(errorMessage);
       }
       hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
       return nextStateForKey;
     });
 
-    if ("development" !== 'production') {
-      var warningMessage = getUnexpectedStateKeyWarningMessage(state, finalState, action);
+    if ('development' !== 'production') {
+      const warningMessage = getUnexpectedStateKeyWarningMessage(
+        state,
+        finalState,
+        action,
+      );
       if (warningMessage) {
         console.error(warningMessage);
       }
@@ -44,4 +44,4 @@ function combineReducers(reducers) {
   };
 }
 
-export { combineReducers } 
+export { combineReducers };

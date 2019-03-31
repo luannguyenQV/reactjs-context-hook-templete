@@ -1,28 +1,22 @@
-import React, { useContext, useReducer } from "react";
-import ReactDOM from "react-dom";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
-import './app.css'
+import React, { useContext, useReducer } from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import './app.css';
 
-import Home from './pages/Home'
-import About from './pages/About'
-import Setting from './pages/Setting'
+import Home from './pages/Home';
+import About from './pages/About';
+import Setting from './pages/Setting';
 
-import Store from "./modules/home/context";
-import reducer from "./modules/home/reducer";
+import Store from './modules/home/context';
+import reducer from './modules/home/reducer';
 
-import { usePersistedContext, usePersistedReducer } from "./usePersist";
+import { usePersistedContext, usePersistedReducer } from './usePersist';
 
 function App() {
-  const globalStore = usePersistedContext(useContext(Store), "state");
+  const globalStore = usePersistedContext(useContext(Store), 'state');
   const [state, dispatch] = usePersistedReducer(
     useReducer(reducer, globalStore),
-    "state" 
+    'state'
   );
 
   return (
@@ -47,5 +41,5 @@ function App() {
   );
 }
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDOM.render(<App />, rootElement);

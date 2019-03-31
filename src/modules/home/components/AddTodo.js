@@ -1,22 +1,27 @@
-import React, { useContext, useState } from "react";
-import Store from "../context";
+// @flow
+import React, { useContext, useState } from 'react';
+import Store from '../context';
 
-export default function TodoForm({ todoRendering }) {
+export default function TodoForm({
+  todoRendering
+}: {
+  todoRendering: Array<any>
+}) {
   const { dispatch } = useContext(Store);
 
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState('');
 
   function handleTodoChange(e) {
     setTodo(e.target.value);
   }
 
   function handleToggleTodos() {
-    dispatch({ type: "TOGGLE_TODO", payload: todoRendering })
+    dispatch({ type: 'TOGGLE_TODO', payload: todoRendering });
   }
 
   function handleTodoAdd() {
-    dispatch({ type: "ADD_TODO", payload: todo });
-    setTodo("");
+    dispatch({ type: 'ADD_TODO', payload: todo });
+    setTodo('');
   }
 
   function handleSubmitForm(event) {
@@ -26,9 +31,9 @@ export default function TodoForm({ todoRendering }) {
   return (
     <div className="header">
       <input
+        autoFocus
         className="new-todo"
         value={todo}
-        autoFocus={true}
         placeholder="Enter todo name here"
         onKeyUp={handleSubmitForm}
         onChange={handleTodoChange}
@@ -39,7 +44,7 @@ export default function TodoForm({ todoRendering }) {
         onClick={handleToggleTodos}
         checked
       />
-      <label htmlFor="toggle-all"/>
+      <label htmlFor="toggle-all" />
     </div>
   );
 }

@@ -1,7 +1,12 @@
-import React from "react";
-import TodoItem from "./TodoItem"
+// @flow
+import React from 'react';
+import TodoItem from './TodoItem';
 
-export default function TodoList({ todoRendering }) {
+export default function TodoList({
+  todoRendering
+}: {
+  todoRendering: Array<any>
+}) {
   return (
     <section className="main">
       <ul className="todo-list">
