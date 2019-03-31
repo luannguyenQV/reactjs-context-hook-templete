@@ -17,8 +17,8 @@ export default function FilterItem({ totalItem }) {
         {['ALL', 'ACTIVE', 'DONE'].map(filter => (
           <li key={filter} onClick={() => setFilter(filter)}>
             <a
-              className={state.filter.status === filter ? 'selected' : 'false'}
               href="#"
+              className={state.filter.status === filter ? 'selected' : 'false'}
             >
               {filter}
             </a>
