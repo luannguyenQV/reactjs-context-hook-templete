@@ -1,4 +1,4 @@
-# React Hooks Todo App
+# React Context & Hooks Todo App
 
 # Stack
 - Reactjs with context and hooks
