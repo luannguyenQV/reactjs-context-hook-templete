@@ -26,7 +26,9 @@
     "prettier": "^1.16.4"
   },
   "scripts": {
-    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "flow": "npx flow",
+    "format": "npx eslint --fix src/",
+    "analyze": "esource-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
