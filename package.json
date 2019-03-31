@@ -9,7 +9,8 @@
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "source-map-explorer": "^1.8.0"
   },
   "devDependencies": {
     "eslint": "^5.6.0",
@@ -25,6 +26,7 @@
     "prettier": "^1.16.4"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
